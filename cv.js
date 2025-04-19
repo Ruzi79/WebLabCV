@@ -1,0 +1,122 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const educationSection = document.querySelector(".education");
+    const educationList = document.getElementById("education-list");
+  
+    const addEduBtn = document.createElement("button");
+    addEduBtn.textContent = "Add Education";
+    styleButton(addEduBtn, "white");
+  
+    addEduBtn.addEventListener("click", () => {
+      const year = prompt("Enter year range (e.g. 2021 - 2025):");
+      const university = prompt("Enter university name:");
+  
+      if (year && university) {
+        const degrees = [];
+        let another = true;
+        while (another) {
+          const degree = prompt("Enter a degree/program:");
+          if (degree) {
+            degrees.push(degree);
+            another = confirm("Add another degree for this university?");
+          } else {
+            another = false;
+          }
+        }
+  
+        if (degrees.length > 0) {
+          const newDiv = document.createElement("div");
+          newDiv.classList.add("div1");
+          newDiv.innerHTML = `
+            <h3 style="font-size: 13px;">
+              <p style="margin-bottom: 10px;">${year}<br>${university}</p>
+            </h3>
+            <ul style="margin-top: 0;">
+              ${degrees.map(deg => `<li>${deg}</li>`).join("")}
+            </ul>
+          `;
+          educationList.appendChild(newDiv);
+        }
+      }
+    });
+  
+    educationSection.appendChild(addEduBtn);
+  
+    const skillsList = document.querySelector(".skills ul");
+    const addSkillBtn = document.createElement("button");
+    addSkillBtn.textContent = "Add Skill";
+    styleButton(addSkillBtn, "white");
+  
+    addSkillBtn.addEventListener("click", () => {
+      const skill = prompt("Enter a new skill:");
+      if (skill) {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        skillsList.appendChild(li);
+      }
+    });
+  
+    skillsList.parentElement.appendChild(addSkillBtn);
+  
+    const workSection = document.querySelector(".work-experience .timeline");
+    const addWorkBtn = document.createElement("button");
+    addWorkBtn.textContent = "Add Work Experience";
+    styleButton(addWorkBtn, "blue");
+  
+    addWorkBtn.addEventListener("click", () => {
+      const company = prompt("Enter company name:");
+      const dateRange = prompt("Enter date range (e.g. 2022 - 2024):");
+      const position = prompt("Enter your position/title:");
+  
+      if (company && dateRange && position) {
+        const responsibilities = [];
+        let another = true;
+  
+        while (another) {
+          const task = prompt("Enter a responsibility/task:");
+          if (task) {
+            responsibilities.push(task);
+            another = confirm("Add another responsibility?");
+          } else {
+            another = false;
+          }
+        }
+  
+        if (responsibilities.length > 0) {
+          const entry = document.createElement("div");
+          entry.classList.add("entry");
+          entry.innerHTML = `
+            <div class="dot"></div>
+            <div class="content">
+              <h3><strong>${company}</strong> <span class="date">${dateRange}</span></h3>
+              <p>${position}</p>
+              <ul>
+                ${responsibilities.map(task => `<li>${task}</li>`).join("")}
+              </ul>
+            </div>
+          `;
+          workSection.appendChild(entry);
+        }
+      }
+    });
+  
+    workSection.parentElement.appendChild(addWorkBtn);
+  
+    function styleButton(button, type) {
+      button.style.padding = "8px 14px";
+      button.style.marginTop = "15px";
+      button.style.border = "2px solid #163853";
+      button.style.borderRadius = "6px";
+      button.style.fontSize = "14px";
+      button.style.cursor = "pointer";
+      button.style.display = "block";
+  
+      if (type === "blue") {
+        button.style.backgroundColor = "#163853";
+        button.style.color = "white";
+      } else {
+        button.style.backgroundColor = "white";
+        button.style.color = "#163853";
+      }
+    }
+  });
+  
