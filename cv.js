@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       if (year && university) {
         const degrees = [];
-        let another = true;
+        let another = true;  
         while (another) {
           const degree = prompt("Enter a degree/program:");
           if (degree) {
@@ -119,4 +119,3 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-  
