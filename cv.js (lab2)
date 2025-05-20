@@ -118,4 +118,32 @@ document.addEventListener("DOMContentLoaded", () => {
         button.style.color = "#163853";
       }
     }
+
+    function makeDropdown(sectionSelector) {
+    const section = document.querySelector(sectionSelector);
+    const title = section.querySelector("h2");
+    const content = Array.from(section.children).filter(child => child !== title);
+
+    const arrow = document.createElement("span");
+    arrow.textContent = "▼";
+    arrow.style.marginRight = "8px";
+    arrow.style.display = "inline-block";
+    arrow.style.transition = "transform 0.2s ease";
+    title.prepend(arrow);
+
+    title.style.cursor = "pointer";
+    title.addEventListener("click", () => {
+      const isHidden = content[0].style.display === "none";
+      content.forEach(el => el.style.display = isHidden ? "" : "none");
+      arrow.textContent = isHidden ? "▼" : "▶";
+    });
+  }
+
+  makeDropdown(".education");
+  makeDropdown(".skills");
+  makeDropdown(".languages");
+  makeDropdown(".work-experience");
+  makeDropdown(".reference-section");
+  makeDropdown(".contact");
+  makeDropdown(".profile");
   });
